@@ -1,0 +1,105 @@
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 800px;
+}
+
+.spinner-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 1. THE LIQUID SPINNER */
+.main-spinner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 20%, #3b82f6);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #fff 0);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #fff 0);
+  animation: spin 1s linear infinite;
+  z-index: 2;
+}
+
+/* 2. THE BREATHING LIGHT EFFECT */
+.breathing-glow {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background: #3b82f6;
+  border-radius: 50%;
+  filter: blur(20px);
+  /* The "Breathing" animation */
+  animation: breathe 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  z-index: 1;
+}
+
+/* 3. THE BLINKING TEXT */
+.loading-status {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.blinking-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #121313;
+  /* The "Blinking" animation */
+  animation: blink 2s ease-in-out infinite;
+}
+
+.breathing-underline {
+  height: 2px;
+  width: 40px;
+  background: #121313;
+  margin: 8px auto 0;
+  border-radius: 2px;
+  animation: breathe 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ANIMATIONS */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
