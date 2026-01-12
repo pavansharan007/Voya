@@ -11,6 +11,7 @@ import NewRidePopup from "../components/NewRidePopUp";
 import { data, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { LogOut } from "lucide-react";
+import "leaflet/dist/leaflet.css";
 
 function RecenterMap({ lat, lng }) {
   const map = useMap();
@@ -52,6 +53,12 @@ function Home() {
   const customIcon = L.icon({
     iconUrl: "/rider.png",
     iconSize: [40, 40],
+    iconAnchor: [20, 40],
+  });
+  const LocationIcon = L.icon({
+    iconUrl:
+      "https://res.cloudinary.com/dlqirm28c/image/upload/v1768220657/vecteezy_gps-location-map-pointer-icon-black_48234229_gjwrw4.png",
+    iconSize: [20, 30],
     iconAnchor: [20, 40],
   });
   const saveRideState = (data) => {
@@ -324,7 +331,7 @@ function Home() {
                       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                       url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" // Modern cleaner tiles
                     />
-                    <Marker position={[latitude, longitude]}>
+                    <Marker position={[latitude, longitude]} icon={LocationIcon}>
                       <Popup className="custom-popup">
                         <div className="p-1 font-semibold">
                           {RequestedUser.fullname}
@@ -492,7 +499,7 @@ function Home() {
                       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                       url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" // Modern cleaner tiles
                     />
-                    <Marker position={[latitude, longitude]}>
+                    <Marker position={[latitude, longitude]} icon={LocationIcon}>
                       <Popup className="custom-popup">
                         <div className="p-1 font-semibold">Your Loaction</div>
                       </Popup>
